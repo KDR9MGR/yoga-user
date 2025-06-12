@@ -11,6 +11,10 @@ class SupabaseService {
       await Supabase.initialize(
         url: AppConfig.supabaseUrl,
         anonKey: AppConfig.supabaseAnonKey,
+        authOptions: const FlutterAuthClientOptions(
+          authFlowType: AuthFlowType.pkce,
+        ),
+        debug: true,
       );
       _client = Supabase.instance.client;
       print('Supabase initialized successfully');
@@ -82,7 +86,10 @@ class SupabaseService {
   /// Sign in with Google
   static Future<bool> signInWithGoogle() async {
     try {
-      final result = await _client?.auth.signInWithOAuth(OAuthProvider.google);
+      final result = await _client?.auth.signInWithOAuth(
+        OAuthProvider.google,
+        redirectTo: 'io.supabase.flutterquickstart://login-callback/',
+      );
       return result ?? false;
     } catch (e) {
       print('Error signing in with Google: $e');

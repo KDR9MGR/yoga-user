@@ -4,7 +4,6 @@ import 'package:ionicons/ionicons.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/theme/app_theme.dart';
-import '../../../core/widgets/enhanced_button.dart';
 import '../../../core/utils/haptic_utils.dart';
 
 /// Habits screen for tracking healthy routines

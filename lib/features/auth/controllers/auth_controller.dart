@@ -135,15 +135,26 @@ class AuthController extends StateNotifier<AuthState> {
     state = state.copyWith(isLoading: true, error: null);
     
     try {
-      final response = await SupabaseService.signInWithGoogle();
+      final success = await SupabaseService.signInWithGoogle();
       
-      state = state.copyWith(
-        isAuthenticated: true,
-        user: response['user'],
-        isLoading: false,
-      );
-      return true;
-        } catch (e) {
+      if (success) {
+        // Get the current user after successful Google sign-in
+        final user = await SupabaseService.getCurrentUser();
+        
+        state = state.copyWith(
+          isAuthenticated: true,
+          user: user,
+          isLoading: false,
+        );
+        return true;
+      } else {
+        state = state.copyWith(
+          error: 'Google sign-in failed',
+          isLoading: false,
+        );
+        return false;
+      }
+    } catch (e) {
       state = state.copyWith(
         error: e.toString(),
         isLoading: false,
