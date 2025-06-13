@@ -6,11 +6,7 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../core/theme/app_theme.dart';
-import '../../../core/widgets/enhanced_button.dart';
 import '../../../core/utils/haptic_utils.dart';
-import '../widgets/dashboard_card.dart';
-import '../widgets/upcoming_class_card.dart';
-import '../widgets/quick_action_card.dart';
 
 /// Home dashboard screen showing app overview and quick actions
 class HomeDashboardScreen extends ConsumerWidget {
@@ -31,12 +27,11 @@ class HomeDashboardScreen extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: AnimationConfiguration.toStaggeredList(
                   duration: const Duration(milliseconds: 375),
-                  childAnimationBuilder: (widget) => SlideAnimation(
-                    verticalOffset: 50.0,
-                    child: FadeInAnimation(
-                      child: widget,
-                    ),
-                  ),
+                  childAnimationBuilder:
+                      (widget) => SlideAnimation(
+                        verticalOffset: 50.0,
+                        child: FadeInAnimation(child: widget),
+                      ),
                   children: [
                     _buildHeader(context),
                     _buildStatsSection(context),
@@ -60,10 +55,7 @@ class HomeDashboardScreen extends ConsumerWidget {
       decoration: BoxDecoration(
         color: AppTheme.surfaceColor,
         border: Border(
-          bottom: BorderSide(
-            color: AppTheme.borderColor,
-            width: 1,
-          ),
+          bottom: BorderSide(color: AppTheme.borderColor, width: 1),
         ),
       ),
       child: Column(
@@ -92,7 +84,9 @@ class HomeDashboardScreen extends ConsumerWidget {
                     const SizedBox(height: AppTheme.spacingXS),
                     Text(
                       'John Doe',
-                      style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                      style: Theme.of(
+                        context,
+                      ).textTheme.headlineMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: AppTheme.textPrimary,
                       ),
@@ -167,10 +161,7 @@ class HomeDashboardScreen extends ConsumerWidget {
       child: Container(
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          border: Border.all(
-            color: AppTheme.primaryColor,
-            width: 2,
-          ),
+          border: Border.all(color: AppTheme.primaryColor, width: 2),
         ),
         child: CircleAvatar(
           radius: 20,
@@ -339,10 +330,7 @@ class HomeDashboardScreen extends ConsumerWidget {
             colors: gradient,
           ),
           borderRadius: BorderRadius.circular(AppTheme.radiusXL),
-          border: Border.all(
-            color: AppTheme.borderColor,
-            width: 1,
-          ),
+          border: Border.all(color: AppTheme.borderColor, width: 1),
           boxShadow: [
             BoxShadow(
               color: iconColor.withOpacity(0.1),
@@ -361,11 +349,7 @@ class HomeDashboardScreen extends ConsumerWidget {
                 color: iconBg,
                 borderRadius: BorderRadius.circular(AppTheme.radiusL),
               ),
-              child: Icon(
-                icon,
-                color: iconColor,
-                size: 20,
-              ),
+              child: Icon(icon, color: iconColor, size: 20),
             ),
             const SizedBox(height: AppTheme.spacingS),
             Shimmer.fromColors(
@@ -432,10 +416,7 @@ class HomeDashboardScreen extends ConsumerWidget {
             decoration: BoxDecoration(
               color: AppTheme.surfaceColor,
               borderRadius: BorderRadius.circular(AppTheme.radiusXL),
-              border: Border.all(
-                color: AppTheme.borderColor,
-                width: 1,
-              ),
+              border: Border.all(color: AppTheme.borderColor, width: 1),
               boxShadow: [
                 BoxShadow(
                   color: AppTheme.primaryColor.withOpacity(0.1),
@@ -466,7 +447,9 @@ class HomeDashboardScreen extends ConsumerWidget {
                     children: [
                       Text(
                         'Morning Hatha Flow',
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        style: Theme.of(
+                          context,
+                        ).textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.bold,
                           color: AppTheme.textPrimary,
                         ),
@@ -495,7 +478,9 @@ class HomeDashboardScreen extends ConsumerWidget {
                                 const SizedBox(width: AppTheme.spacingXS),
                                 Text(
                                   'Today at 9:00 AM',
-                                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                  style: Theme.of(
+                                    context,
+                                  ).textTheme.bodySmall?.copyWith(
                                     color: AppTheme.primaryColor,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -513,9 +498,8 @@ class HomeDashboardScreen extends ConsumerWidget {
                                 const SizedBox(width: AppTheme.spacingXS),
                                 Text(
                                   '60 min',
-                                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                    color: AppTheme.textSecondary,
-                                  ),
+                                  style: Theme.of(context).textTheme.bodySmall
+                                      ?.copyWith(color: AppTheme.textSecondary),
                                 ),
                               ],
                             ),
@@ -679,10 +663,7 @@ class HomeDashboardScreen extends ConsumerWidget {
         decoration: BoxDecoration(
           color: AppTheme.surfaceColor,
           borderRadius: BorderRadius.circular(AppTheme.radiusXL),
-          border: Border.all(
-            color: color.withOpacity(0.2),
-            width: 1,
-          ),
+          border: Border.all(color: color.withOpacity(0.2), width: 1),
           boxShadow: [
             BoxShadow(
               color: color.withOpacity(0.1),
@@ -704,11 +685,7 @@ class HomeDashboardScreen extends ConsumerWidget {
                     color: color,
                     borderRadius: BorderRadius.circular(AppTheme.radiusL),
                   ),
-                  child: Icon(
-                    icon,
-                    color: Colors.white,
-                    size: 20,
-                  ),
+                  child: Icon(icon, color: Colors.white, size: 20),
                 ),
                 Icon(
                   Ionicons.chevron_forward,
@@ -730,9 +707,9 @@ class HomeDashboardScreen extends ConsumerWidget {
             const SizedBox(height: AppTheme.spacingXS),
             Text(
               subtitle,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: AppTheme.textSecondary,
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(color: AppTheme.textSecondary),
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
             ),
@@ -771,17 +748,11 @@ class HomeDashboardScreen extends ConsumerWidget {
       child: Column(
         children: [
           ShaderMask(
-            shaderCallback: (bounds) => LinearGradient(
-              colors: [
-                AppTheme.primaryColor,
-                AppTheme.secondaryColor,
-              ],
-            ).createShader(bounds),
-            child: Icon(
-              Ionicons.leaf,
-              color: Colors.white,
-              size: 32,
-            ),
+            shaderCallback:
+                (bounds) => LinearGradient(
+                  colors: [AppTheme.primaryColor, AppTheme.secondaryColor],
+                ).createShader(bounds),
+            child: Icon(Ionicons.leaf, color: Colors.white, size: 32),
           ),
           const SizedBox(height: AppTheme.spacingM),
           Shimmer.fromColors(
@@ -811,7 +782,9 @@ class HomeDashboardScreen extends ConsumerWidget {
                 color: AppTheme.primaryColor.withOpacity(0.2),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: AppTheme.spacingS),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppTheme.spacingS,
+                ),
                 child: Text(
                   '— Judith Hanson Lasater',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -843,4 +816,4 @@ class HomeDashboardScreen extends ConsumerWidget {
       return 'Good Evening';
     }
   }
-} 
+}
